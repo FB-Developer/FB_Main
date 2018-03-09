@@ -1,0 +1,4 @@
+#fbtable tr:nth-child(odd){
+  background: lightgray;
+  color:rgb(0,0,40);
+}

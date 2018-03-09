@@ -1,0 +1,52 @@
+<div class="p-2" style="background:white;color: gray;border-radius:5px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+<fb-header></fb-header>
+
+    <div class="mt-2 container">
+    <p *ngIf='errorMesg' class="text-error h2">
+        {{errorMesg}}
+    </p>
+    <!--
+    <p  class="text-success content">
+        {{fbDetail|json}}
+    </p> -->
+</div>
+
+<div style="margin-top:2%">
+    <div class="p-2 h5 bg-secondary text-primary" style="border-radius:5px">
+    Academic Year:{{academicyear}}
+    <br>
+    Departement: {{dept}}
+    <br>
+    Faculty Name: {{fname}}
+</div>
+    <div class="card mt-2 mb-2 text-primary" *ngFor="let fb of fbDetail" style="border:1px solid gray">
+      <div class="card-header">
+      </div>
+      <div class="card-body columns">
+          <div class="col-2 text-center pl-2 pt-2 text-bold" style="color:rgb(80,80,110)">
+              <div style="margin:0 auto;">
+              <p style="border:1px solid lightgray">Degree: {{fb.degree}}</p>
+              <p style="border:1px solid lightgray">Dept: {{fb.dept}}</p>
+              <p style="border:1px solid lightgray">Sem: {{fb.sem}}</p>
+              <p style="border:1px solid lightgray">Class: {{fb.class}}</p>
+              <p style="border:1px solid lightgray">Subject: {{fb.subname}} </p>
+              <p style="border:1px solid lightgray">Section: {{fb.section}}</p>
+              <p style="border:1px solid lightgray" *ngIf="fb.section!='Theory' ">Batch: {{fb.batch}}</p>
+          </div>
+          </div>
+        <div style="display: block" class="col-10">
+
+
+            <canvas baseChart
+          [data]=[fb.fbResult.excellent,fb.fbResult.verygood,fb.fbResult.good,fb.fbResult.fair]
+          [labels]='["Excellent","Very Good","Good","Fair"]'
+          [chartType]='"pie"'
+          >
+      </canvas>
+
+      <span class="bg-primary p-2 float-right" style="border-radius:5px"> <label style="font-weight:bold">Average Score : </label>{{fb.fbResult.avgscore|number:'.2-2'}}</span>
+</div>
+      </div>
+    </div>
+</div>
+</div>

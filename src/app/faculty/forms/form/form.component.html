@@ -1,0 +1,72 @@
+<div style="background:white; padding:2%;color: gray;border-radius:5px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+  <fb-header>
+  </fb-header>
+  <div *ngIf="!fbroot.status" class="h2 mt-2 toast toast-error">
+    {{fbroot.mesg}}
+  </div>
+  <div *ngIf="fbroot.status" class="pt-2" style="margin:1% auto;width:80%;font-size:110%;padding:1%;box-shadow:2px 2px 5px lightgray,-2px -2px 5px lightgray;">
+    <div>
+      <table class="table mb-2 text-center" style="border:1px solid lightgray">
+        <thead style="font-weight:bold">
+          <td>
+            Academic Year
+          </td>
+          <td>
+            Degree
+          </td>
+          <td>
+            Departement
+          </td>
+          <td>
+            Sem
+          </td>
+          <td>
+            class
+          </td>
+        </thead>
+        <tr>
+          <td>{{fbroot.mesg.academicyear}}</td>
+            <td>{{fbroot.mesg.degree}}</td>
+            <td>{{fbroot.mesg.dept}}</td>
+            <td>{{fbroot.mesg.sem}}</td>
+            <td>{{fbroot.mesg.class}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="accordion" *ngFor='let section of fbroot?.mesg.sectionList,let indx=index'>
+    <input  [checked]='indx==0' type="radio" [attr.id]='indx' name="accordion-radio" hidden>
+    <label [attr.for]='indx' class="accordion-header bg-primary c-hand test" style="font-size:125%">
+      <i class="icon icon-arrow-right mr-1"></i>
+        <span>{{section.section}} <i *ngIf="section.section!='Theory'">| Batch:{{section.batch}}</i></span>
+      </label>
+    <div class="accordion-body" style="padding-left:5%">
+      <div class="accordion mt-1" *ngFor='let subject of section.subjectList,let ii=index'>
+        <input checked type="checkbox" [attr.id]='(indx+1)*50+ii' hidden>
+        <label *ngIf="subject.subname" [attr.for]='(indx+1)*50+ii' class="accordion-header c-hand test-title" style="background:gray;color:white;border-top:1px solid gray;border-bottom:1px solid gray">
+          <strong>Subject:</strong> {{subject.subname}}
+        </label>
+        <div class="accordion-body">
+          <table class="table">
+            <thead style="background:lightgray;font-weight:bold;" *ngIf="section.section!='Technician'">
+              <td>Faculty Name</td>
+              <td>Faculty Dept</td>
+            </thead>
+              <thead style="background:lightgray;font-weight:bold;" *ngIf="section.section=='Technician'">
+                <td>Technician Name</td>
+                <td>Technician Dept</td>
+              </thead>
+          <tr *ngFor='let faculty of subject.facultyList'>
+              <td>{{faculty.fname}}</td>
+              <td>{{faculty.fdept}}</td>
+          </tr>
+            <!--
+            <span  style="margin-left:5%;">
+              <strong>{{faculty.fname}}</strong> | <strong>{{faculty.fdept}}</strong>
+            </span> -->
+          </table>
+        </div>
+      </div>
+    </div></div>
+
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div style="background:white; padding:2%;color: gray;border-radius:5px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+  <fb-header></fb-header>
+  <form *ngIf="rootDT" [formGroup]='rootFG' class="form-horizontal">
+    <div style='border:1px solid teal;box-shadow:2px 2px 10px gray,-2px -2px 10px lightgray;'>
+      <table class="table">
+        <thead>
+           <tr>
+             <th class="col-2">Academic Year</th>
+             <th class="col-2">Department</th>
+             <th class="col-2">Degree</th>
+             <th class="col-2">Sem</th>
+             <th class="col-2">Class</th>
+           </tr>
+          <tr>
+              <td>
+                <select class="form-select" formControlName='academicyear'>
+                  <option *ngFor="let academicyear of academicyearList" [value]='academicyear'>{{academicyear}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName='dept'>
+                  <option *ngFor="let department of departmentList" [value]='department'>{{department}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName='degree' >
+                  <option *ngFor="let degree of degreeList" [value]='degree'>{{degree}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName='sem'>
+                  <option *ngFor="let sem of semList" [value]='sem'>{{sem}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName='class'>
+                  <option *ngFor="let class of classList" [value]='class'>{{class}}</option>
+                </select>
+              </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div>
+      <fb-sectionlist [rootFG]='rootFG' [sectionList]='rootDT.sectionList'></fb-sectionlist>
+    </div>
+      <div class="clearfix">
+        <button (click)="onSubmit(rootFG.value)" style="margin-top:20px;box-shadow:2px 2px 20px gray;" class="btn btn-primary btn-lg float-right col-2" type="submit" [disabled]='!rootFG.valid'>
+
+        <div *ngIf='!isUpdate else updateText'>
+          SUBMIT
+        </div>
+        <ng-template #updateText>
+          UPDATE
+        </ng-template>
+        </button>
+      </div>
+  </form>
+  <!-- <div *ngIf="errorMesg" class="toast toast-error">
+    {{errorMesg}}
+  </div> -->
+  <p>
+    <!-- {{rootFG.value|json}} -->
+  </p>
+</div>

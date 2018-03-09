@@ -1,0 +1,11 @@
+<div [formGroup]='subjectFG' class="form-group pt-2">
+  <div class="col-4 pr-2" *ngIf="subjectFG.parent.parent.value.section!='Technician'">
+      <label class="form-label col-8">
+        Subject Name:
+      </label>      
+      <input class="form-input input-sm col-11" formControlName='subname' style="box-shadow:2px 2px 5px lightgray;">
+  </div>
+  <div class="col-8">
+    <fb-facultylist [subjectFG]='subjectFG' [facultyList]='subject.facultyList'></fb-facultylist>
+  </div>
+</div>

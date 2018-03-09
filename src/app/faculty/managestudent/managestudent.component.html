@@ -1,0 +1,164 @@
+<div [ngClass]="{'blurred':insertStudentFlag}" style="background:white; padding:2%;color: gray;border-radius:5px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+  <fb-header></fb-header>
+  <div style='margin-top:2%;border:1px solid gray;box-shadow:2px 2px 10px gray,-2px -2px 10px lightgray;'>
+      <table class="table">
+        <thead>
+           <tr>
+             <th class="col-2">Academic Year</th>
+             <th class="col-2">Department</th>
+             <th class="col-2">Degree</th>
+             <th class="col-2">Sem</th>
+             <th class="col-2">Class</th>
+           </tr>
+          <tr>
+              <td>
+                <select (change)='loadStudentList()' class="form-select" [(ngModel)]="academicyear" >
+                  <option *ngFor="let academicyear of academicyearList" [value]='academicyear'>{{academicyear}}</option>
+                </select>
+              </td>
+              <td>
+                <select (change)='loadStudentList()' class="form-select" [(ngModel)]="dept">
+                  <option *ngFor="let dept of departmentList" [value]='dept'>{{dept}}</option>
+                </select>
+              </td>
+              <td>
+                <select (change)='loadStudentList()' class="form-select" [(ngModel)]="degree" >
+                  <option *ngFor="let degree of degreeList" [value]='degree'>{{degree}}</option>
+                </select>
+              </td>
+              <td>
+                <select (change)='loadStudentList()' class="form-select" [(ngModel)]="sem">
+                  <option *ngFor="let sem of semList" [value]='sem'>{{sem}}</option>
+                </select>
+              </td>
+              <td>
+                <select (change)='loadStudentList()' class="form-select" [(ngModel)]="class">
+                  <option *ngFor="let class of classList" [value]='class'>{{class}}</option>
+                </select>
+              </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="conatiner p-2" style='margin-top:2%;'>
+        <div class=" float-right">
+            <button (click)='showInsertStudent()' type="button" class="btn btn-sm btn-primary">
+                <i class="mr-2 icon icon-plus"></i>Add Student
+            </button>
+            <button (click)='deleteSelected()' type="button" [disabled]='!deleteFlag' class="btn btn-sm btn-primary">
+                <i class="mr-2 icon icon-delete" ></i>Delete Selected
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+  <div class="container mt-2" >
+    <div *ngIf='errormesg' class="text-error h2">
+      {{errormesg}}
+    </div>
+    <div *ngIf='!errormesg'>
+    <table class="table bordered">
+          <thead>
+            <th>Sr.</th>
+            <th>
+                    <label class="form-checkbox" style="display:inline">
+                        <input (change)='selectall(allselected)' [(ngModel)]='allselected' type="checkbox" style="vertical-align:middle;"><i class="form-icon"></i>
+                    </label>
+            </th>
+            <th><input (keyup)="findByUserID()"[(ngModel)]='userId' style="width:100%;height:100%" type="form-input" placeholder="User Id"></th>
+            <th><input (keyup)="findByUserName()" [(ngModel)]="userName" style="width:100%;height:100%" type="form-input" placeholder="User Name"></th>
+            <th>Batch</th>
+            <th>
+              <select (change)='findByCompletedStatus()' class="form-select" [(ngModel)]="completed">
+                <option>
+                  All
+                </option>
+                <option>
+                  Completed
+                </option>
+                <option>
+                  Not Completed
+                </option>
+              </select>
+          </th>
+          </thead>
+          <tr *ngFor="let student of tempList,let indx=index">
+              <td>{{indx+1}}</td>
+              <td>
+                  <label class="form-checkbox" style="display:inline;">
+                      <input type="checkbox" [checked]='allselected' (change)="cbSelected(student.userId,$event)">
+                      <i class="form-icon" style="vertical-align: middle;">
+                      </i>
+                  </label>
+              </td>
+              <td>{{student.userId}}</td>
+              <td>{{student.userName}}</td>
+              <td>{{student.studentdetail.batch}}</td>
+              <td style="position:relative">
+                <label class="form-switch" style="position:absolute;left:40%;top:0%;margin-top:5%;">
+                <input type="checkbox" #completed [checked]='student.studentdetail.completed' (change)='setCompleted(student.userId,completed.checked)'>
+                <i class="form-icon"></i>
+                 </label>
+              </td>
+            </tr>
+        </table>
+      </div>
+</div>
+</div>
+
+<div class="modal text-primary" [ngClass]="{'active':insertStudentFlag}">
+  <div class="modal-container bordered">
+      <div class="modal-header">
+      <a class="btn btn-clear float-right" (click)='closeInsertStudentDlg()' aria-label="Close"></a>
+      <div class="modal-title h5">Add Student</div>
+    </div>
+
+    <form class="form-horizontal m-2" #test1='ngForm'>
+        <div class="container">
+            <p>{{test1.value|json}}</p>
+            <div class="form-group columns">
+                <label class="form-label col-5">Academic Year</label>
+                  <select class="form-select col-7" name="academicyear" ngModel required>
+                    <option *ngFor="let academicyear of academicyearList" [value]='academicyear'>{{academicyear}}</option>
+                  </select>
+            </div>
+            <div class="form-group columns">
+                    <label class="form-l col-5">Department</label>
+                  <select class="form-select col-7" name='dept' ngModel required>
+                    <option *ngFor="let department of departmentList" [value]='department'>{{department}}</option>
+                  </select>
+              </div>
+                <div class="form-group columns">
+                    <label class="form-label col-5">Degree</label>
+                  <select class="form-select col-7" name='degree' ngModel required>
+                    <option *ngFor="let degree of degreeList" [value]='degree'>{{degree}}</option>
+                  </select>
+              </div>
+                <div class="form-group columns">
+                    <label class="form-label col-5">Sem</label>
+                  <select class="form-select col-7" name='sem' ngModel required>
+                    <option *ngFor="let sem of semList" [value]='sem'>{{sem}}</option>
+                  </select>
+              </div>
+              <div class="form-group columns">
+                    <label class="form-label col-5">Class</label>
+                  <select class="form-select col-7" name='class' ngModel required>
+                    <option *ngFor="let class of classList" [value]='class'>{{class}}</option>
+                  </select>
+              </div>
+              <div class="form-group columns">
+                  <label class="form-label col-5">Batch</label>
+                  <input class="form-input col-7" type="text" name='batch' ngModel required>
+              </div>
+          <div class="form-group columns">
+              <input class="form-input" type="text" id="userId" placeholder="Enrollment Number" name='userId' ngModel required>
+          </div>
+          <div class="form-group columns">
+                  <input class="form-input mt-1" type="text" id="userId" placeholder="User Name" name='userName' ngModel required>
+          </div>
+          <div class="columns btn-group">
+              <button [disabled]='!test1.valid' (click)='insertStudent(test1.value)' type="button" class="btn btn-primary"> Add Student</button>
+          </div>
+    </div>
+  </form>
+  </div>
+</div>

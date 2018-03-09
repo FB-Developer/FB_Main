@@ -1,0 +1,19 @@
+  <div [formGroup]='subjectFG'>
+    <div formArrayName='facultyList'>
+      <div *ngFor="let faculty of facultyList">
+          <fbfaculty [facultyComponentArray]='subjectFG.controls.facultyList' [faculty]='faculty'></fbfaculty>
+      </div>
+    </div>
+  </div>
+<!-- <div class="conatiner">
+  <div [formGroup]='subjectFG'>
+    <div formArrayName='facultyList'>
+      <div *ngFor="let faculty of facultyList">
+        <br>
+        <div class="container">
+          <fbfaculty [facultyComponentArray]='subjectFG.controls.facultyList' [faculty]='faculty'></fbfaculty>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

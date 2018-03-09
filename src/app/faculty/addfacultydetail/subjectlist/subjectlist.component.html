@@ -1,0 +1,18 @@
+<div class="container" style="color:rgb(0,0,50);" [formGroup]='sectionFG'>
+  <div formArrayName='subjectList'>
+    <details *ngFor="let subject of subjectList,let indx=index" class="accordion mt-2 mb-2" open>
+      <summary class="accordion-header bg-secondary" style="border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px lightgray">
+         <i class="icon icon-arrow-right mr-1"></i>{{sectionFG.value.subjectList[indx].subname}}
+       </summary>
+       <div *ngIf="subjectList.length>1" class="has-icon-right mt-2 p-2">
+         <i class="form-icon icon icon-cross btn btn-link" (click)="removeSubject(indx)" style="box-shadow:2px 2px 5px gray">
+         </i>
+       </div>
+      <fb-subject [subjectList]='sectionFG.controls["subjectList"]' [subject]='subject'></fb-subject>
+    </details>
+    <button *ngIf="sectionFG.value.section!='Technician'" (click)="addSubject()" class="btn btn-sm float-right">
+      <i class="icon icon-plus"></i>
+        Add Subject
+    </button>
+  </div>
+</div>

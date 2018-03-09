@@ -1,0 +1,34 @@
+export const config={
+ academicyearList:[
+  '2017-18',
+  '2018-19',
+  '2019-20',
+  '2020-21'
+],
+  degreeList:[
+    'BE',
+    'ME'
+  ],
+  departmentList:[
+    "CE",
+    "IT",
+    "EC",
+    "ASH",
+    "IC",
+    "MECHANICAL",
+    "CIVIL",
+    "ELECTRICAL",
+    "AERO"
+  ],
+  semList:[
+    1,2,3,4,5,6,7,8
+  ],
+  classList:[
+    1,2
+  ],
+  sectionList:[
+    "Theory",
+    "Practical",
+    "Technician"
+  ]
+}

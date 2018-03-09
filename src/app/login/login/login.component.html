@@ -1,0 +1,17 @@
+<div class="modal modal-sm active">
+<div class="modal-container" style="box-shadow:10px 10px 20px gray,-10px -10px 20px gray">
+  <p *ngIf="mesg" class="text-error h5">{{mesg}}</p>
+  <div class="modal-body content">
+  <form  class="form-group" [formGroup]='loginFG' (ngSubmit)="login(loginFG.value)">
+        <p *ngIf="!loginFG.controls['username'].valid && loginFG.controls['username'].touched" class="text-error h5">Username Required</p>
+          <label class="form-label">Username</label>
+            <input class="form-input" formControlName='username' type="text" placeholder="UserName">
+          <p *ngIf="!loginFG.controls['password'].valid && loginFG.controls['password'].touched" class="text-error h5">password Required</p>
+          <label class="form-label">Password</label>
+            <input class="form-input" formControlName='password' type="password" placeholder="Password">
+          <button [ngClass]='{loading:flag}' class="btn btn-primary centered col-12" [disabled]='!loginFG.valid' style="box-shadow:2px 2px 10px gray;margin-top:20px;padding-right:20px;padding-left:20px">Login</button>
+
+  </form>
+ </div>
+</div>
+</div>

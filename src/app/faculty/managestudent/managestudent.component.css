@@ -1,0 +1,19 @@
+.bordered td
+{
+  border: 1px solid gray;
+  text-align: left;
+}
+.bordered th
+{
+  background: #dddddf;
+  border: 1px solid gray;
+}
+.test{}
+.blurred{
+
+    filter: grayscale() blur(2px);
+}
+.bordered{
+    border-radius: 5px;
+    border:2px solid cornflowerblue;
+}

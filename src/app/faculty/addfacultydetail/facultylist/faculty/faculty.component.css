@@ -1,0 +1,10 @@
+.ctnr {
+   display: inline-block; width: 40%;
+      }
+.vMsg{
+    display:relative;
+    top:-40px;
+    border:1px solid red;
+    color:red;
+    padding:2px;
+}

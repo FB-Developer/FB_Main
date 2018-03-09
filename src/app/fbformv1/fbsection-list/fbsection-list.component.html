@@ -1,0 +1,22 @@
+<div [formGroup]='rootFG'>
+    <div formArrayName='sectionList'>
+      <div *ngFor="let section of sectionList,let indx=index">
+        <br>
+        <details *ngIf="indx==0" class="accordion" open>
+            <summary  class="accordion-header h4 c-hand bg-primary p-2" style="border:1px solid white;box-shadow:2px 2px 10px gray;">
+              <i class="icon icon-arrow-right"></i>
+                {{section.section}}
+            </summary>
+          <fbsection [sectionComponentArray]='rootFG.controls.sectionList' [section]='section'></fbsection>
+        </details>
+        <details *ngIf="indx>0" class="accordion">
+            <summary class="accordion-header bg-primary h4 c-hand p-2" style="border:1px solid white;color:white;box-shadow:2px 2px 10px gray;">
+              <i class="icon icon-arrow-right"></i>
+                {{section.section}}
+            </summary>
+          <fbsection [sectionComponentArray]='rootFG.controls.sectionList' [section]='section'></fbsection>
+        </details>
+        <br>
+      </div>
+    </div>
+</div>

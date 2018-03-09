@@ -1,0 +1,16 @@
+<div [formGroup]='rootFG'>
+  <div formArrayName='sectionList'>
+    <div *ngFor="let section of sectionList,let indx=index" style="background:aliceblue;border:1px solid teal;padding:10px;margin-top:10px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray">
+      <div *ngIf="sectionList.length>1" class="has-icon-right mt-2 p-2">
+        <i class="form-icon icon icon-cross btn btn-link" (click)="removeSection(indx)" style="box-shadow:2px 2px 5px gray">
+        </i>
+     </div>
+      <fb-section [sectionList]='rootFG.controls["sectionList"]' [section]='section'></fb-section>
+    </div>
+    <button (click)="addSection()" class="btn btn-sm has-icons-left float-right mt-2">
+      <i class="icon icon-plus"></i>
+      Add Section
+    </button>
+    <div class="clearfix"></div>
+  </div>
+</div>

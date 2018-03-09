@@ -1,0 +1,49 @@
+<div class="container" style="background: aliceblue; color: gray;width:70%;margin:0 auto;padding:20px; border-radius:5px;padding-top:20px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+  <form *ngIf="rootDT" [formGroup]='rootFG' class="form-horizontal">
+    <div style="border:1px solid gray">
+      <div class="form-group p-2">
+        <label class="form-label col-2" style="font-weight:bold">Academic Year:</label>
+        <select class="form-select col-2" formControlName='academicyear'>
+          <option *ngFor="let academicyear of academicyearList">{{academicyear}}</option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group p-2">
+        <label class="form-label col-2" style="font-weight:bold">Degree:</label>
+        <select class="form-select col-2" formControlName='degree'>
+          <option *ngFor="let degree of degreeList">{{degree}}</option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group p-2">
+        <label class="form-label col-2" style="font-weight:bold">Department:</label>
+        <select class="form-select col-2" formControlName='department'>
+          <option *ngFor="let department of departmentList">{{department}}</option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group p-2">
+        <label class="form-label col-2" style="font-weight:bold">Semester:</label>
+        <select class="form-select col-2" formControlName='sem'>
+          <option *ngFor="let sem of semList">{{sem}}</option>
+        </select>
+      </div>
+      <br>
+      <div class="form-group p-2">
+        <label class="form-label col-2" style="font-weight:bold">Class:</label>
+        <select class="form-select col-2" formControlName='class'>
+          <option *ngFor="let class of classList">{{class}}</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <fb-sectionlist [rootFG]='rootFG' [sectionList]='rootDT.sectionList'></fb-sectionlist>
+    </div>
+      <div class="clearfix">
+        <button style="margin-top:20px;box-shadow:2px 2px 20px gray;" class="btn btn-primary btn-lg float-right col-2" type="submit" [disabled]='!rootFG.valid'>SUBMIT</button>
+      </div>
+  </form>
+  <p>
+    {{rootFG.value|json}}
+  </p>
+</div>

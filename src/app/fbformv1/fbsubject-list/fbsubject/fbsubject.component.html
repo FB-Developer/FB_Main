@@ -1,0 +1,15 @@
+<div [formGroup]='subjectFG'>
+  <div *ngIf="subject.subname" class="bg-primary p-2 h5" style="border:1px solid white;background:slategray;color:white;box-shadow:2px 2px 20px gray,-2px -2px 10px lightgray;text-shadow:none">Subject Name: {{subject.subname}}</div>
+  <div class="">
+  <fbfaculty-list [subjectFG]="subjectFG" [facultyList]="subject.facultyList"></fbfaculty-list>
+  </div>
+</div>
+<!-- <div [formGroup]='subjectFG'>
+  <div class="form-horizontal">
+  <div class="form-group">
+    <label for="subname" class="form-label col-4">Subject Name:</label>
+    <input type="text" name="subname" class="form-input" formControlName="subname" disabled>
+  </div>
+  <fbfaculty-list [subjectFG]="subjectFG" [facultyList]="subject.facultyList"></fbfaculty-list>
+  </div>
+</div> -->

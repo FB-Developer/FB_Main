@@ -1,0 +1,8 @@
+.my-card{
+  border-radius:10px;
+  border:1px solid lightblue;
+}
+.my-card:hover{
+  background: aliceblue;
+  color:#000077;
+  }

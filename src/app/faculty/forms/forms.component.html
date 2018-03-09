@@ -1,0 +1,45 @@
+<div style="background:white; padding:2%;color: gray;border-radius:5px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+  <fb-header></fb-header>
+  <table class="table">
+    <thead style="text-align:center;font-weight:bold">
+      <td >Academic Year</td>
+      <td>Departement</td>
+  </thead>
+  <tr>
+    <td>
+    <select (change)='loadFormField()' class="form-select" [(ngModel)]="academicyear">
+      <option *ngFor="let academicyear of academicyearList" [value]='academicyear'>{{academicyear}}</option>
+    </select>
+    </td>
+    <td>
+    <select (change)='loadFormField()' class="form-select" [(ngModel)]="dept">
+      <option *ngFor="let department of departmentList" [value]='department'>{{department}}</option>
+    </select>
+    </td>
+    </tr>
+  </table>
+  <div class="container mt-2" >
+  <div class="columns">
+<div (click)="viewDetail(temp)" class="card my-card col-6 c-hand " *ngFor='let temp of fbroot'>
+    <div class="card-header">
+        Academic Year: {{temp.academicyear}}
+        <br>
+        Departement:   {{temp.dept}}
+  </div>
+  <div class="card-body ">
+      Degree: {{temp.degree}}
+      <br>
+      Semester: {{temp.sem}}
+      <br>
+      Class: {{temp.class}}
+  </div>
+  <div class="card-footer">
+    <div class="btn-group m-2" style="width:100%;box-shadow:2px 2px 5px lightgray,-2px -2px 5px lightgray;">
+    <button (click)="updateForm(temp);$event.stopPropagation()" class="btn btn-primary c-auto " style="border:1px solid white">Update</button>
+    <button (click)="deleteForm(temp); $event.stopPropagation()" class="btn btn-primary c-auto" style="border:1px solid white">Delete</button>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>

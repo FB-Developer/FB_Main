@@ -1,0 +1,8 @@
+<div [formGroup]='sectionFG' class="p-1">
+    <div formArrayName='subjectList'>
+      <div *ngFor="let subject of subjectList">
+        <br>
+          <fbsubject [subjectComponentArray]='sectionFG.controls.subjectList' [subject]='subject'></fbsubject>
+      </div>
+    </div>
+</div>

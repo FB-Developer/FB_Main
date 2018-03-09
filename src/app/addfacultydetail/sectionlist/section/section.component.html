@@ -1,0 +1,16 @@
+<div [formGroup]='sectionFG' class="form-horizontal" style="border:1px solid gray;margin-top:20px;padding:2%;box-shadow:5px 5px 10px gray;">
+  <div class="form-group">
+      <label class="form-label col-2">
+        Select Section:
+      </label>
+      <select class="form-select col-4" formControlName='section'>
+        <option *ngFor="let temp of predefinedSectionList" [value]="temp">
+          {{temp}}
+        </option>
+      </select>
+      </div>
+      <div *ngIf="sectionFG.controls['section'].value!='Theory'" class="form-group">
+      <label class="form-label col-2">Batch:</label>
+      <input formControlName='batch' type="text" class="form-input input-sm col-4">
+      </div>
+</div>

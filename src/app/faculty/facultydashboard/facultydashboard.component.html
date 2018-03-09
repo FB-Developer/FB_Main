@@ -1,0 +1,80 @@
+<div class="p-2" style="background:white;color: gray;border-radius:5px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray;">
+<fb-header></fb-header>
+<div class="text-center" style="margin-top:1%;margin-bottom:10%">
+  <div class="container">
+  <div class=" tooltip p-2 float-right" data-tooltip="Logout" style="">
+    <a  href="/logout" class="btn btn-border mb-2 circle" style="width:100%;">
+        <i class="icon icon-shutdown"></i>
+    </a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="columns container">
+  <div class="col-3 p-2" style="background:antiquewhite;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+  <div class="label-border mb-2">Form</div>
+  <button class="btn btn-border mb-2"  style="width:100%;" (click)="generateForm()">
+    Generate Form
+  </button>
+  <br>
+  <button class="btn btn-border mb-2" style="width:100%" (click)="viewForm()">
+      View Forms
+  </button>
+  </div>
+  <div class="col-3 p-2" style="background:aliceblue;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+<div class="label-border mb-2">Faculty</div>
+  <button class="btn btn-border mb-2" style="width:100%;" (click)="generateForm()">
+    Manage Faculties
+  </button>
+  <br>
+  <button class="btn btn-border mb-2"  style="white-space: normal;;width:100%">
+      Upload Faculty List
+  </button>
+</div>
+  <div class="col-3 p-2" style="background:antiquewhite;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+<div class="label-border mb-2">Subject</div>
+  <button class="btn btn-border mb-2" style="width:100%;" (click)="generateForm()">
+    Manage Subjects
+  </button>
+  <br>
+  <button class="btn btn-border mb-2" style="width:100%">
+      Upload Subject List
+  </button>
+  </div>
+  <div class="col-3 p-2" style="background:aliceblue;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+<div class="label-border mb-2">Student</div>
+  <button class="btn btn-border mb-2" style="width:100%;" (click)="manageStudent()">
+    Manage Students
+  </button>
+  <br>
+  <button class="btn btn-border mb-2" (click)="uploadStudentList()" style="width:100%">
+      Upload Student List
+  </button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="modal modal-sm" [ngClass]="{'active':active}">
+<div class="modal-container">
+  <div class="modal-header">
+   <a (click)="closeModal()" class="btn btn-clear float-right" aria-label="Close"></a>
+   <div class="modal-title h5">Upload Faculty List</div>
+         <label for="single">Select File :</label>
+      <br>
+      <input class="form-input" type="file" ng2FileSelect [uploader]='uploader' accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+   <br>
+   <div *ngIf="item">
+   <button type="button" class="btn" (click)="item.upload()" [disabled]="item.isReady" [ngClass]="{'loading':item.isUploading}">
+      <span><i class="icon icon-upload"></i>Upload</span>
+    </button>
+      <!-- <span *ngIf="item.isError" class="text-error">Error in Uploading File</span>
+      <span *ngIf="item.isSuccess" class="text-success">Uploaded Successfully</span> -->
+      <div><span *ngIf="error" class="text-error">{{error}}</span></div>
+      <div><span *ngIf="dlgmesg" class="text-success">{{dlgmesg}}</span></div>
+      <progress class="progress" role="progressbar" [attr.value]='item.progress' max="100" ></progress>
+    </div>
+ </div>
+</div>
+</div>
