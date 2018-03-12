@@ -194,6 +194,6 @@ export class FacultyrootComponent implements OnInit {
             }
             );
           }
-  });
+  }});
 }
 }

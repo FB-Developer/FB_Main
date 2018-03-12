@@ -3,23 +3,25 @@ import { CanActivate, Router,ActivatedRouteSnapshot, RouterStateSnapshot,CanDeac
 import { Observable } from 'rxjs/Observable';
 import {AuthService} from '../login/auth.service';
 
+
 @Injectable()
 export class AuthGuard implements CanActivate{
   constructor(private authservice:AuthService, private route:Router){}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
       this.authservice.setRedirectUrl(state.url);
       if(this.authservice.isLoggedIn()){
         let temp=localStorage.getItem('loggedInUser');
         if(temp){
-          if(JSON.parse(temp).userRole=='student')
+          if(state.url.indexOf('fbform')!=-1 && JSON.parse(temp).userRole=='student')
             return true;
-          else if(JSON.parse(temp).userRole=='faculty'){
-                  this.route.navigate(['faculty']);
-                  return false;
-            }
-          }
+          else if(state.url.indexOf('faculty')!=-1 && JSON.parse(temp).userRole=='faculty')
+            return true;
+          else if(state.url.indexOf('fbresult')!=-1 && JSON.parse(temp).userRole=='principal')
+              return true;
+        }
       }
       this.route.navigate(['login']);
       return false;

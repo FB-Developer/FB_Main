@@ -14,6 +14,7 @@ degree:string;
 sem:string;
 class:string;
 fbroot:FBroot;
+errmesg;
   constructor(private route:ActivatedRoute, private gf:GetformsService) { }
 
   ngOnInit() {
@@ -27,7 +28,10 @@ fbroot:FBroot;
 
       this.gf.getFormDetail(this.academicyear,this.dept,this.class,this.sem,this.degree)
     .subscribe((result)=>{
-      this.fbroot=result;
+      if(!result.status)
+        this.errmesg=result.mesg;
+      else
+        this.fbroot=result.mesg;
     });
 }
 }

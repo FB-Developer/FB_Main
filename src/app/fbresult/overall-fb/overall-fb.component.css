@@ -2,3 +2,17 @@
   background: lightgray;
   color:rgb(0,0,40);
 }
+.btn-border{
+  background:#2778DE;
+  color:white;
+  border:1px solid white;
+  box-shadow:2px 2px 10px gray;
+  font-family:open_sansregular;
+}
+.btn-border:hover{
+
+  background:#2757DD;
+  color:white;
+  border:1px solid white;
+  box-shadow:2px 2px 10px teal;
+}

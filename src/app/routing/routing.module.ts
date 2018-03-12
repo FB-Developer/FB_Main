@@ -10,7 +10,8 @@ import {FbresultModule} from '../fbresult/fbresult.module';
 const routeList:Routes = [
   {
     path:'',
-    redirectTo:'fbform',
+
+    redirectTo:'login',
     pathMatch:'full'
   },
   {
@@ -26,10 +27,12 @@ const routeList:Routes = [
   },
   {
     path:'faculty',
+    canActivate:[AuthGuard],
     loadChildren:'app/faculty/faculty.module#FacultyModule'
   },
   {
     path:'fbresult',
+    canActivate:[AuthGuard],
     loadChildren:'app/fbresult/fbresult.module#FbresultModule'
   },
   {
@@ -46,4 +49,6 @@ const routeList:Routes = [
   declarations: [],
   providers:[AuthGuard]
 })
-export class RoutingModule { }
+
+export class RoutingModule
+{}

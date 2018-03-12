@@ -9,9 +9,10 @@ import {CommonsectionModule} from '../commonsection/commonsection.module';
 import { FormsComponent } from './forms/forms.component';
 import { FormComponent } from './forms/form/form.component';
 import {GetformsService} from './forms/getforms.service';
-import { FileSelectDirective} from 'ng2-file-upload';
+import { FileUploadModule} from 'ng2-file-upload';
 import { ManagestudentComponent } from './managestudent/managestudent.component';
-import {ManagestudentService} from './managestudent/managestudent.service'
+import {ManagestudentService} from './managestudent/managestudent.service';
+import { ManagefacultyComponent } from './managefaculty/managefaculty.component'
 const routes: Routes = [
   {
     path: '',
@@ -57,14 +58,15 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     AddfacultydetailModule,
+    FileUploadModule,
     CommonsectionModule,
     RouterModule.forChild(routes)
   ],
   declarations: [FacultydashboardComponent,
     FormsComponent,
     FormComponent,
-    FileSelectDirective,
-    ManagestudentComponent],
+    ManagestudentComponent,
+    ManagefacultyComponent],
     providers:[GetformsService,ManagestudentService]
 })
 export class FacultyModule { }

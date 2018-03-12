@@ -34,8 +34,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("loggedInUser",JSON.stringify(data.mesg));
       if(this._authservice.redirectUrl)
         this.route.navigateByUrl(this._authservice.redirectUrl);
-      else
-        this.route.navigate(['fbform']);  
+      else if(data.mesg.userRole=='student')
+          this.route.navigate(['fbform']);
+      else if(data.mesg.userRole=='faculty')
+        this.route.navigate(['faculty']);
+      else if(data.mesg.userRole=='principal')
+        this.route.navigate(['fbresult']);
     }
     this.flag=false;
   },(error)=>{
