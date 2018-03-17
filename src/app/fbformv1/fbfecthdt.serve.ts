@@ -9,7 +9,7 @@ import { FBrequest, FBrequestresult } from './fbmodel/fbresult';
 
 @Injectable()
 export class FBfetchDtServe{
-  urlfbresult:string=serverconf.serverurl+'users/addfbresult'
+  urlfbresult:string=serverconf.serverurl+'/users/addfbresult'
 
   urlfb:string=serverconf.serverurl+'/users/fbdetailv1'
   urlfbsetcompleted:string=serverconf.serverurl+'/users/setcompleted'

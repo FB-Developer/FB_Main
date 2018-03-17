@@ -1,6 +1,9 @@
 import { Component,Input, OnInit } from '@angular/core';
 import{FBsubject}from'../../../../fbmodel/fbsubjectdt';
 import {FormGroup,FormBuilder,FormControl,FormArray,Validators} from '@angular/forms';
+import {SubjectlistService} from '../../subjectlist.service';
+import {SubmitfbdetailService} from '../../submitfbdetail.service'
+
 @Component({
   selector: 'fb-subject',
   templateUrl: './subject.component.html',
@@ -12,7 +15,8 @@ export class SubjectComponent implements OnInit {
   subjectList:FormArray;
   @Input('subject')
   subject:FBsubject;
-  constructor(private fb:FormBuilder){}
+  autoSubjectList:string[]=[];
+  constructor(private fb:FormBuilder, private fbserve:SubmitfbdetailService, private subjectserve:SubjectlistService){}
   ngOnInit() {
     this.subjectFG=this.fb.group({
       'subname':[this.subject.subname]
@@ -30,5 +34,27 @@ export class SubjectComponent implements OnInit {
         }
         this.subjectFG.patchValue({'subname':''});
     });
+
+
+
+    this.autoSubjectList=this.subjectserve.autoSubjectList;
+    // this.subjectserve.subjectList.subscribe(dt=>{
+    //       this.loadSubjectList(dt);
+    // });
   }
+  // loadSubjectList(tempdt)
+  // {
+  //   this.fbserve.getSubjectList(tempdt)
+  //   .subscribe((dt)=>{
+  //     if(dt.status)
+  //     {
+  //       this.autoSubjectList=dt.subjectlist;
+  //       this.subjectserve.autoSubjectList=this.autoSubjectList;
+  //     }
+  //     else
+  //     {
+  //       this.autoSubjectList=[];
+  //     }
+  //   });
+  // }
 }

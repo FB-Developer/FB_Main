@@ -13,6 +13,7 @@ export class SectionComponent implements OnInit {
   sectionList:FormArray;
   @Input('section')
   section:FBsection;
+
   predefinedSectionList=config.sectionList;
   isTheoryDone=false;
   constructor(private fb:FormBuilder){}

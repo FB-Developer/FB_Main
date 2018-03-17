@@ -1,20 +1,24 @@
 <div [formGroup]='facultyFG' class="form-horizontal" style="margin-top:2%;padding:2%;">
-  <div class="form-group">
-      <label  *ngIf="facultyFG.parent.parent.parent.parent.value.section=='Technician'" class="form-label col-4">
+  <p *ngIf="errormsg" class="text-error">{{errormsg}}</p>
+  <div class="form-group columns">
+    <label class="form-label col-4">Department:</label>
+    <div class="col-7 container">
+    <select (change)='loadFacultyList()' class="form-select select-sm col-7" formControlName='fdept'>
+      <option *ngFor="let department of departmentList" [value]='department'>{{department}}</option>
+    </select>
+  </div>
+  </div>
+  <div class="form-group columns">
+      <label  *ngIf="facultyFG.parent.parent.parent.parent.value.section=='Technician' " class="form-label col-4">
         Technician Name:
       </label>
       <label  *ngIf="facultyFG.parent.parent.parent.parent.value.section!='Technician'" class="form-label col-4">
         Faculty Name:
       </label>
+      <div class="col-7 container">
       <input ng2-auto-complete class="form-input input-sm" formControlName='fname'
-        [source]='["testList","testList1"]'
-      >
+        [source]='autoFacultyList'>
       </div>
-      <div class="form-group">
-        <label class="form-label col-4">Department:</label>
-        <select class="form-select select-sm " formControlName='fdept'>
-          <option *ngFor="let department of departmentList" [value]='department'>{{department}}</option>
-        </select>
       </div>
 </div>
 <div style="border:1px solid;margin-bottom:2%"></div>

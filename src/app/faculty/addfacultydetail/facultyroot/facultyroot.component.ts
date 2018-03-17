@@ -9,6 +9,8 @@ import {Router,ActivatedRoute} from '@angular/router';
 import {SubmitfbdetailService} from '../submitfbdetail.service';
 import swal from 'sweetalert2';
 import {GetformsService} from '../../forms/getforms.service';
+import {SubjectlistService} from '../subjectlist.service';
+
 @Component({
   selector: 'fb-facultyroot',
   templateUrl: './facultyroot.component.html',
@@ -24,7 +26,7 @@ export class FacultyrootComponent implements OnInit {
   classList= config.classList;
   loggedInUser:string;isUpdate=false;
   errorMesg;
-  constructor(private fb:FormBuilder,private fbdetailserv:SubmitfbdetailService,private route:Router,private currentRoute:ActivatedRoute,private gf:GetformsService,private cd:ChangeDetectorRef) {
+  constructor(private fb:FormBuilder,private fbdetailserv:SubmitfbdetailService,private route:Router,private currentRoute:ActivatedRoute,private gf:GetformsService,private subject:SubjectlistService,private cd:ChangeDetectorRef) {
   }
   ngOnInit() {
     this.currentRoute.url.subscribe(dt=>{
@@ -90,6 +92,7 @@ export class FacultyrootComponent implements OnInit {
         sem:[this.rootDT.sem,Validators.required],
         class:[this.rootDT.class,Validators.required]
       });
+      this.onInfoChange();
   }
   updateRootDT(dt){
       this.rootDT=new FBroot();
@@ -115,6 +118,7 @@ export class FacultyrootComponent implements OnInit {
         sem:[{value:this.rootDT.sem,disabled:this.isUpdate},Validators.required],
         class:[{value:this.rootDT.class,disabled:this.isUpdate},Validators.required]
       });
+      this.onInfoChange();
   }
   onSubmit(value:FBroot){
     swal({
@@ -196,4 +200,28 @@ export class FacultyrootComponent implements OnInit {
           }
   }});
 }
-}
+onInfoChange()
+{
+  const tempdt={
+      dept:this.rootFG.value.dept,
+      degree:this.rootFG.value.degree,
+      sem:this.rootFG.value.sem
+    }
+  this.fbdetailserv.getSubjectList(tempdt)
+  .subscribe((dt)=>{
+  if(dt.status)
+  {
+
+    this.subject.autoSubjectList=dt.subjectlist;
+  }
+  else
+  {
+    this.subject.autoSubjectList=[];
+  }
+});
+  // this.subject.updateSubjectList({
+  //     dept:this.rootFG.value.dept,
+  //     degree:this.rootFG.value.degree,
+  //     sem:this.rootFG.value.sem
+  //   });
+}}

@@ -10,6 +10,8 @@ import'rxjs/Rx'
 @Injectable()
 export class SubmitfbdetailService {
   urlfb:string=serverconf.serverurl+'/users';
+  urlfaculty:string=serverconf.serverurl+'/details/getfacultylist';
+  urlsubject:string=serverconf.serverurl+'/details/getsubjectlist';
 
   constructor(private http:Http) { }
   sendFBDetail(result:FBroot){
@@ -26,5 +28,17 @@ export class SubmitfbdetailService {
     return this.http.put(this.urlfb+'/updatefbdetail',result,options)
       .map((response:Response)=>response.json());
 
+  }
+
+  getFacultyList(dept:string){
+    return this.http.get(this.urlfaculty+'?dept='+dept)
+    .map((response:Response)=>response.json());
+  }
+
+  getSubjectList(dt){
+    const url=this.urlsubject+'?dept='+dt.dept+'&degree='+dt.degree+'&sem='+dt.sem;
+    console.log(url);
+    return this.http.get(url)
+    .map((response:Response)=>response.json());
   }
 }

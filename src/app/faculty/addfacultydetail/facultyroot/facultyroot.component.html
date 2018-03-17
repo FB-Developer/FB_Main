@@ -27,17 +27,17 @@
                 </select>
               </td>
               <td>
-                <select class="form-select" formControlName='dept'>
+                <select (change)='onInfoChange()' class="form-select" formControlName='dept'>
                   <option *ngFor="let department of departmentList" [value]='department'>{{department}}</option>
                 </select>
               </td>
               <td>
-                <select class="form-select" formControlName='degree' >
+                <select (change)='onInfoChange()' class="form-select" formControlName='degree' >
                   <option *ngFor="let degree of degreeList" [value]='degree'>{{degree}}</option>
                 </select>
               </td>
               <td>
-                <select class="form-select" formControlName='sem'>
+                <select (change)='onInfoChange()' class="form-select" formControlName='sem'>
                   <option *ngFor="let sem of semList" [value]='sem'>{{sem}}</option>
                 </select>
               </td>

@@ -24,4 +24,12 @@ url:string=serverconf.serverurl+'/fbresult';
       return this.http.get(tempurl1)
         .map((response:Response)=>response.json());
   }
+
+  export2xlsx(ayear:string,dept:string)
+  {
+      let tempurl1=this.url+'/export2xslx?academicyear='+ayear+'&dept='+dept;
+      console.log('****',tempurl1);
+      return this.http.get(tempurl1)
+        .map((response:Response)=>response.json());
+  }
 }

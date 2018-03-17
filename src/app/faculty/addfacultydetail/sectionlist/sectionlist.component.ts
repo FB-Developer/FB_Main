@@ -15,6 +15,7 @@ export class SectionlistComponent implements OnInit {
 
   @Input('sectionList')
   sectionList:FBsection[];
+
   constructor(private fb:FormBuilder,private cd:ChangeDetectorRef) { }
   ngOnInit() {
     this.rootFG.addControl('sectionList',this.fb.array([]));

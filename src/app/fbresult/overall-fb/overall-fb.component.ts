@@ -40,7 +40,21 @@ dept:string='CE';
         }
       });
   }
+  export2xlsx(){
+    if(this.academicyear&&this.dept)
+    {
+      this.fbserv.export2xlsx(this.academicyear,this.dept)
+        .subscribe((dt)=>{
+          if(dt.status)
+           this.mesg=dt.mesg;
+          else
+          this.errmesg=dt.mesg;
+        });
+    }
+  }
+
   loadFormField(){
+
     if(this.academicyear&&this.dept)
     {
       this.fbserv.getOverallFB(this.academicyear,this.dept)
@@ -58,5 +72,10 @@ dept:string='CE';
           }
         });
     }
+
+
+
+
+
   }
 }

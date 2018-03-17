@@ -6,6 +6,8 @@ import {LogoutComponent} from '../login/login/logout.component';
 import { RouterModule,Routes } from '@angular/router';
 import {AuthGuard} from './auth.guard';
 import {FbresultModule} from '../fbresult/fbresult.module';
+import {AutherrorComponent} from '../commonsection/autherror/autherror.component';
+
 
 const routeList:Routes = [
   {
@@ -36,8 +38,11 @@ const routeList:Routes = [
     loadChildren:'app/fbresult/fbresult.module#FbresultModule'
   },
   {
+    path:'autherror/:errormesg',component:AutherrorComponent
+  },
+  {
     path:'**',
-    component:FbrootComponent
+    redirectTo:'autherror/Page not Found'
   }
 ];
 @NgModule({
