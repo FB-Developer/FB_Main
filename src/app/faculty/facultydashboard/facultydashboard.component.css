@@ -1,9 +1,10 @@
 .btn-border{
-  background:#2745EE;
-  color:white;
+  /* background:#2745EE;
+   color:white; */
   border:1px solid white;
   box-shadow:2px 2px 10px gray;
-  font-family:open_sansregular;
+  font-family:open_sans regular;
+  font-size:140%;
 }
 .label-border{
   color:brown;

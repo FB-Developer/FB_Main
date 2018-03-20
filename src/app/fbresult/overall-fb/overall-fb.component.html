@@ -3,14 +3,15 @@
 
 <div class="container">
 <div class=" tooltip p-2 float-right" data-tooltip="Logout" style="">
-  <a  href="/logout" class="btn btn-border mb-2 circle" style="width:100%;">
-      <i class="icon icon-shutdown"></i>
+  <a  href="/logout" class="btn btn-error mb-2 " style="width:100%;">
+      <i class="icon icon-shutdown mr-2"></i>Logout
   </a>
 </div>
+<button type="button" class="btn btn-primary float-right mt-2">Change Password</button>
 <div class="clearfix"></div>
 </div>
-<p *ngIf='mesg' class="text-success">File Saved to reports/{{mesg.fileName}}</p><p *ngIf='errmesg' class="text-error">Error in exporting File<br/>{{errmesg|json}}</p>
 
+<p *ngIf='mesg' class="text-success">File Saved to reports/{{mesg.fileName}}</p><p *ngIf='errmesg' class="text-error">Error in exporting File<br/>{{errmesg|json}}</p>
 <table class="table">
   <thead style="text-align:center;font-weight:bold">
     <td >Academic Year</td>

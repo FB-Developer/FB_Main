@@ -2,25 +2,29 @@
 <fb-header></fb-header>
 <div class="text-center" style="margin-top:1%;margin-bottom:10%">
   <div class="container">
-  <div class=" tooltip p-2 float-right" data-tooltip="Logout" style="">
-    <a  href="/logout" class="btn btn-border mb-2 circle" style="width:100%;">
-        <i class="icon icon-shutdown"></i>
-    </a>
-  </div>
+    <div class=" tooltip p-2 float-right" data-tooltip="Logout" style="">
+      <a  href="/logout" class="btn btn-error mb-2 " style="width:100%;">
+          <i class="icon icon-shutdown mr-2"></i>Logout
+      </a>
+    </div>
+    <button type="button" class="btn btn-primary float-right mt-2">Change Password</button>
   <div class="clearfix"></div>
 </div>
+
+
 <div class="columns container">
-  <div class="col-3 p-2" style="background:antiquewhite;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+  <div class="col-12 p-2" style="background:white;border:1px solid gray;">
+    <!-- box-shadow:2px 2px 5px gray,-2px -2px 5px gray"> -->
   <div class="label-border mb-2">Form</div>
-  <button class="btn btn-border mb-2"  style="width:100%;" (click)="generateForm()">
+  <button class="btn btn-primary mb-2 btn-border"  style="width:25%;" (click)="generateForm()">
     Generate Form
   </button>
   <br>
-  <button class="btn btn-border mb-2" style="width:100%" (click)="viewForm()">
+  <button class="btn btn-primary mb-2 btn-border" style="width:25%" (click)="viewForm()">
       View Forms
   </button>
-  </div>
-  <div class="col-3 p-2" style="background:aliceblue;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+  <!-- </div> -->
+  <!-- <div class="col-3 p-2" style="background:aliceblue;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
 <div class="label-border mb-2">Faculty</div>
   <button disabled class="btn btn-border mb-2" style="width:100%;" (click)="generateForm()">
     Manage Faculties
@@ -39,14 +43,14 @@
   <button disabled class="btn btn-border mb-2" style="width:100%">
       Upload Subject List
   </button>
-  </div>
-  <div class="col-3 p-2" style="background:aliceblue;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray">
+  </div> -->
+  <!-- <div class="col-3 p-2" style="background:aliceblue;border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px gray"> -->
 <div class="label-border mb-2">Student</div>
-  <button class="btn btn-border mb-2" style="width:100%;" (click)="manageStudent()">
+  <button class="btn btn-primary mb-2 btn-border" style="width:25%;" (click)="manageStudent()">
     Manage Students
   </button>
   <br>
-  <button class="btn btn-border mb-2" (click)="uploadStudentList()" style="width:100%">
+  <button class="btn btn-primary mb-2 btn-border" (click)="uploadStudentList()" style="width:25%">
       Upload Student List
   </button>
 </div>
@@ -60,7 +64,7 @@
 <div class="modal-container">
   <div class="modal-header">
    <a (click)="closeModal()" class="btn btn-clear float-right" aria-label="Close"></a>
-   <div class="modal-title h5">Upload Faculty List</div>
+   <div class="modal-title h5">Upload Student List</div>
          <label for="single">Select File :</label>
       <br>
       <input class="form-input" type="file" ng2FileSelect [uploader]='uploader' accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
@@ -75,6 +79,11 @@
       <div><span *ngIf="dlgmesg" class="text-success">{{dlgmesg}}</span></div>
       <progress class="progress" role="progressbar" [attr.value]='item.progress' max="100" ></progress>
     </div>
+ </div>
+ <div class="container">
+   <p>Student List must be Uploaded in a specific format,
+     You can download sample file from <a href="assets/studentlist_format.xlsx" style="text-decoration:underline;" class="btn btn-link pt-1 pl-2">here</a>
+  </p>
  </div>
 </div>
 </div>

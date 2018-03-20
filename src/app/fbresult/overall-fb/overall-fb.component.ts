@@ -15,6 +15,7 @@ academicyearList=config.academicyearList;
 departmentList=config.departmentList;
 academicyear:string='2017-18';
 dept:string='CE';
+mesg;errmesg;
   constructor(private fbserv:FbresultService, private router:Router) { }
 
   resultDetail(fname)

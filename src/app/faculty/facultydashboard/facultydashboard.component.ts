@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {serverconf} from 'assets/serverconf';
 import {Router} from '@angular/router';
-
  import { FileUploader } from 'ng2-file-upload';
  //
 // import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle} from '@angular/common';
-
 @Component({
   selector: 'fb-facultydashboard',
   templateUrl: './facultydashboard.component.html',
@@ -13,11 +12,9 @@ import {Router} from '@angular/router';
   // directives:[FILE_UPLOAD_DIRECTIVES, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class FacultydashboardComponent implements OnInit {
-
   loggedInUser:string;dlgmesg:string;
   active:boolean=false;
-  uploader:FileUploader = new FileUploader({url:'http://localhost:4400/upload'});
-
+  uploader:FileUploader = new FileUploader({url:serverconf.serverurl+'/upload'});
   error:string;
   item;
   constructor(private router:Router) { }
