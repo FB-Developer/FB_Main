@@ -1,4 +1,4 @@
-<div class="p-2" [formGroup]='subjectFG' style="border:1px solid white;box-shadow:2px 2px 5px lightgray,-2px -2px 5px lightgray;">
+<div class="p-2" [formGroup]='subjectFG' style="border:1px solid teal">
   <div formArrayName='facultyList'>
     <div *ngFor="let faculty of facultyList,let indx=index">
        <div *ngIf="facultyList.length>1" class="has-icon-right mt-2 p-2">
@@ -7,7 +7,7 @@
        </div>
       <fb-faculty [facultyList]='subjectFG.controls["facultyList"]' [faculty]='faculty'></fb-faculty>
     </div>
-    <button (click)="addFaculty()" class="btn btn-sm float-right" style='border:1px solid white;box-shadow:2px 2px 10px gray'>
+    <button (click)="addFaculty()" class="btn btn-sm float-right" style='border:1px solid lightgray;'>
       <i class="icon icon-plus"></i>
       <span *ngIf="subjectFG.parent.parent.value.section!='Technician'">
         Add Faculty

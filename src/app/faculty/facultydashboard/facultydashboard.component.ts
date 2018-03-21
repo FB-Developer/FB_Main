@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {FbresultService} from '../../fbresult/fbresult.service';
 import {serverconf} from 'assets/serverconf';
 import {Router} from '@angular/router';
  import { FileUploader } from 'ng2-file-upload';
- //
-// import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle} from '@angular/common';
+ import swal from 'sweetalert2';
+
 @Component({
   selector: 'fb-facultydashboard',
   templateUrl: './facultydashboard.component.html',
@@ -17,9 +18,14 @@ export class FacultydashboardComponent implements OnInit {
   uploader:FileUploader = new FileUploader({url:serverconf.serverurl+'/upload'});
   error:string;
   item;
-  constructor(private router:Router) { }
+  changePwdDlg=false;loggedInUserId;
+  flag:boolean=false;
+
+  constructor(private fbserv:FbresultService,private router:Router) { }
   ngOnInit() {
-    this.loggedInUser=JSON.parse(localStorage.getItem('loggedInUser')).userName;
+    let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
+    this.loggedInUserId=temp.userId;
+    this.loggedInUser=temp.userName;
     this.uploader.onAfterAddingFile  = (item) => {
       this.item=item;
 
@@ -67,5 +73,51 @@ export class FacultydashboardComponent implements OnInit {
   {
     this.active=false;
   }
+  openChangePasswordDlg()
+  {
+    this.changePwdDlg=true;
+  }
 
+  changePassword(fg:any)
+  {
+    const value=fg.value;
+    this.flag=true;
+    this.fbserv.changePassword(this.loggedInUserId,value.oldPwd,value.newPwd)
+      .subscribe((dt)=>{
+        if(dt.success)
+            swal({
+              title:"Success",
+              type:'success',
+              text:dt.mesg
+            }).then((result)=>{
+                this.changePwdDlg=false;
+                this.flag=false;
+                fg.reset();
+            });
+          else
+              swal({
+                title:"Error",
+                type:'error',
+                text:dt.mesg
+              }).then((result)=>{
+                  fg.reset();
+                  this.flag=false;
+              });
+      },(error)=>
+      {
+        swal({
+          title:"Error",
+          type:'error',
+          text:error
+        }).then((result)=>{
+            fg.reset();
+            this.flag=false;
+        });
+      });
+  }
+
+  closeChangePwdDlg(fg:any){
+    fg.reset();
+    this.changePwdDlg=false;
+  }
 }

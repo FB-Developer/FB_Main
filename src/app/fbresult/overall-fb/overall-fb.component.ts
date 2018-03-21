@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FbresultService} from '../fbresult.service';
 import {Router} from '@angular/router';
 import {config} from '../../faculty/facultyconfig';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'fb-overall-fb',
@@ -9,13 +10,15 @@ import {config} from '../../faculty/facultyconfig';
   styleUrls: ['./overall-fb.component.css']
 })
 export class OverallFbComponent implements OnInit {
-overallFB:any[];
 
+overallFB:any[];
 academicyearList=config.academicyearList;
 departmentList=config.departmentList;
 academicyear:string='2017-18';
 dept:string='CE';
+changePwdDlg=false;loggedInUser;
 mesg;errmesg;
+flag:boolean=false;
   constructor(private fbserv:FbresultService, private router:Router) { }
 
   resultDetail(fname)
@@ -25,6 +28,8 @@ mesg;errmesg;
 
   }
   ngOnInit() {
+    let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
+    this.loggedInUser=temp.userId;
     this.fbserv.getOverallFB('2017-18','CE')
       .subscribe((dt)=>{
         this.overallFB=dt;
@@ -73,10 +78,53 @@ mesg;errmesg;
           }
         });
     }
+}
 
+openChangePasswordDlg()
+{
+  this.changePwdDlg=true;
+}
 
+changePassword(fg:any)
+{
+  const value=fg.value;
+  this.flag=true;
+  this.fbserv.changePassword(this.loggedInUser,value.oldPwd,value.newPwd)
+    .subscribe((dt)=>{
+      if(dt.success)
+          swal({
+            title:"Success",
+            type:'success',
+            text:dt.mesg
+          }).then((result)=>{
+              this.changePwdDlg=false;
+              fg.reset();
+              this.flag=false;
+          });
+        else
+            swal({
+              title:"Error",
+              type:'error',
+              text:dt.mesg
+            }).then((result)=>{
+                fg.reset();
+                this.flag=false;
+            });
+    },(error)=>
+    {
+      swal({
+        title:"Error",
+        type:'error',
+        text:error
+      }).then((result)=>{
+          fg.reset();
+          this.flag=false;
+      });
+    });
+}
+closeChangePwdDlg(fg:any){
 
-
-
-  }
+  fg.reset();
+  this.changePwdDlg=false;
+}
 }

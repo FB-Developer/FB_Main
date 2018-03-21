@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
+        "assets/spectre-exp.css",
         "assets/spectre.css",
         "assets/spectre-icons.css"
       ],

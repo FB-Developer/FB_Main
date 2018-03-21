@@ -10,6 +10,7 @@ loggedInUser:string;
   constructor() { }
 
   ngOnInit() {
+    
     let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
     this.loggedInUser=temp.userName;
 

@@ -1,7 +1,7 @@
 <div class="container" style="color:rgb(0,0,50);" [formGroup]='sectionFG'>
   <div formArrayName='subjectList'>
     <details *ngFor="let subject of subjectList,let indx=index" class="accordion mt-2 mb-2" open>
-      <summary class="accordion-header bg-secondary" style="border:1px solid white;box-shadow:2px 2px 5px gray,-2px -2px 5px lightgray">
+      <summary class="accordion-header bg-secondary" style="border:1px solid white;box-shadow:1px 1px 2px lightgray">
          <i class="icon icon-arrow-right mr-1"></i>{{sectionFG.value.subjectList[indx].subname}}
        </summary>
        <div *ngIf="subjectList.length>1" class="has-icon-right mt-2 p-2">

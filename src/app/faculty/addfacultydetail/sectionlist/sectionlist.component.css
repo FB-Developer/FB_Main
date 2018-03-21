@@ -1,0 +1,5 @@
+.bgbox:nth-child(2n+1) {
+    background: rgba(120,120,125,0.1);
+    color:rgb(0,0,0);
+}
+.bgbox{}

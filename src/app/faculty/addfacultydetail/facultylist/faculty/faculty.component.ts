@@ -43,7 +43,8 @@ export class FacultyComponent implements OnInit {
         this.autoFacultyList=[];
       }
 
-      this.facultyFG.patchValue({fname:''});
+      if(this.facultyFG.value.fname=='')
+        this.facultyFG.patchValue({fname:''});
     });
   }
 }

@@ -1,7 +1,7 @@
 <div [formGroup]='rootFG'>
   <div formArrayName='sectionList'>
 
-    <div *ngFor="let section of sectionList,let indx=index" style="background:aliceblue;border:1px solid teal;padding:10px;margin-top:10px;box-shadow:2px 2px 10px lightgray,-2px -2px 10px lightgray">
+    <div *ngFor="let section of sectionList,let indx=index" class="bgbox" style="border:1px solid teal;padding:10px;margin-top:10px;">
       <div *ngIf="sectionList.length>1" class="has-icon-right mt-2 p-2">
         <i class="form-icon icon icon-cross btn btn-link" (click)="removeSection(indx)" style="box-shadow:2px 2px 5px gray">
         </i>

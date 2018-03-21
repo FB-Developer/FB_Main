@@ -62,7 +62,6 @@ export class FacultyrootComponent implements OnInit {
   }
 
   createRootDT(){
-      console.log('****');
       this.rootDT=new FBroot();
       this.rootDT.academicyear="2017-18";
       this.rootDT.degree="BE";
@@ -95,6 +94,7 @@ export class FacultyrootComponent implements OnInit {
       this.onInfoChange();
   }
   updateRootDT(dt){
+    console.log('----dt----',dt);
       this.rootDT=new FBroot();
       this.rootDT.academicyear=dt.academicyear;
       this.rootDT.degree=dt.degree;
@@ -112,11 +112,11 @@ export class FacultyrootComponent implements OnInit {
       //   this.rootDT.sectionList.push(section1);
       //  }
       this.rootFG=this.fb.group({
-        academicyear:[{value:this.rootDT.academicyear,disabled:this.isUpdate},Validators.required],
-        degree:[{value:this.rootDT.degree,disabled:this.isUpdate},Validators.required],
-        dept:[{value:this.rootDT.dept,disabled:this.isUpdate},Validators.required],
-        sem:[{value:this.rootDT.sem,disabled:this.isUpdate},Validators.required],
-        class:[{value:this.rootDT.class,disabled:this.isUpdate},Validators.required]
+        academicyear:[this.rootDT.academicyear,{value:this.rootDT.academicyear,disabled:this.isUpdate},Validators.required],
+        degree:[this.rootDT.degree,{value:this.rootDT.degree,disabled:this.isUpdate},Validators.required],
+        dept:[this.rootDT.dept,{value:this.rootDT.dept,disabled:this.isUpdate},Validators.required],
+        sem:[this.rootDT.sem,{value:this.rootDT.sem,disabled:this.isUpdate},Validators.required],        
+        class:[this.rootDT.class,{value:this.rootDT.class,disabled:this.isUpdate},Validators.required]
       });
       this.onInfoChange();
   }
@@ -138,7 +138,7 @@ export class FacultyrootComponent implements OnInit {
                 swal({
                         title: 'Success',
                         text: 'Submitted Succesfully',
-                        type: 'success',
+                         type: 'success',
                         confirmButtonText: 'Done'
                       }).then((result)=>
                         this.route.navigate(['/faculty'])

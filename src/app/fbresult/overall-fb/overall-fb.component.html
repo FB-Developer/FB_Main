@@ -7,7 +7,7 @@
       <i class="icon icon-shutdown mr-2"></i>Logout
   </a>
 </div>
-<button type="button" class="btn btn-primary float-right mt-2">Change Password</button>
+<button   (click)="openChangePasswordDlg()" type="button" class="btn btn-primary float-right mt-2">Change Password</button>
 <div class="clearfix"></div>
 </div>
 
@@ -99,4 +99,34 @@
       </td>
   </tr>
 </table>
+</div>
+
+<div class="modal text-primary modal-sm" [ngClass]="{'active':changePwdDlg}">
+  <div class="modal-container bordered">
+      <div class="modal-header">
+      <a class="btn btn-clear float-right" (click)='closeChangePwdDlg(pwdForm)' aria-label="Close"></a>
+      <div class="modal-title h5">Change Password for {{loggedInUser}}</div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+
+
+        <form class="form m-2" #pwdForm='ngForm'>
+          <div class="form-group">
+             <span *ngIf="oldPwd.touched && !oldPwd.valid" class="text-error p-1" style="">Password Required</span>
+              <input type="password" name="oldPwd" placeholder="Current Password" class="form-input input-sm mb-2" #oldPwd="ngModel" ngModel required>
+              <span *ngIf="newConfirmPwd.valid && pwdForm.value.newPwd!=pwdForm.value.newConfirmPwd" class="text-error p-1" >Password Mismatch</span>
+              <span *ngIf="newPwd.touched && !newPwd.valid" class="text-error p-1" style="">New Password Required</span>
+                <input type="password" name="newPwd" placeholder="New Password" class="form-input input-sm mb-2" #newPwd="ngModel" ngModel required>
+                <span *ngIf="newConfirmPwd.touched && !newConfirmPwd.valid" class="text-error p-1" style="">Confirm New Password Required</span>
+                <input type="password" name="newConfirmPwd" placeholder="Confirm New Password" class="form-input input-sm mb-2" #newConfirmPwd="ngModel" ngModel required>
+          </div>
+          <p>{{pwdForm.form.oldPwd}}</p>
+          <div class="form-group">
+              <button (click)="changePassword(pwdForm)" [ngClass]='{loading:flag}' type="button" [disabled]='!pwdForm.form.valid || pwdForm.value.newPwd!=pwdForm.value.newConfirmPwd' class="btn btn-primary btn-sm float-right">Change Password</button>
+          </div>
+        </form>
+      </div>
+  </div>
+  </div>
 </div>

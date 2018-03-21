@@ -32,4 +32,19 @@ url:string=serverconf.serverurl+'/fbresult';
       return this.http.get(tempurl1)
         .map((response:Response)=>response.json());
   }
+
+  changePassword(uid:string,oldpwd:string,newpwd:string)
+  {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(serverconf.serverurl+'/changepassword',
+    {
+      userId:uid,
+      oldpassword:oldpwd,
+      newpassword:newpwd
+    },
+    options)
+      .map((response:Response)=>response.json());
+
+  }
 }
