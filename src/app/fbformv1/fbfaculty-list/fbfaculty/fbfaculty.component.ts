@@ -18,8 +18,8 @@ export class FbfacultyComponent implements OnInit {
     this.facultyFG=this.fb.group({
         fname:[this.faculty.fname],
         fdept:[this.faculty.fdept],
-        rating:['Excellent',Validators.required],
-        score:['88',Validators.required]
+        rating:['',Validators.required],
+        score:['',Validators.required]
     });
     this.facultyComponentArray.push(this.facultyFG);
   }

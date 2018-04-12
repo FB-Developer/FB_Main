@@ -1,6 +1,10 @@
 <div [formGroup]='facultyFG' class="p-1" style="border-bottom:1px solid teal">
      <label class="form-label h5"><strong>Name:</strong> {{faculty.fname}}</label>
      <label class="form-label h5"><strong>Dept:</strong> {{faculty.fdept}}</label>
+
+     <div class="text-center">
+       <img [attr.src]="faculty.fimage" [attr.width]="140">
+     </div>
      <span *ngIf="!facultyFG.controls['rating'].valid && facultyFG.controls['rating'].touched" class="text-error p-1" style="">Required To Select an Option</span>
       <div style="text-align:center;border-bottom:1px solid;border-top:1px solid;padding-top:5px;padding-bottom:5px;">
         <label class="form-radio ">

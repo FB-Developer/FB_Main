@@ -28,6 +28,7 @@ export const config={
   ],
   sectionList:[
     "Theory",
+    "Theory(Elective)",
     "Practical",
     "Technician"
   ]

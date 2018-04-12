@@ -21,7 +21,8 @@ export class FacultyComponent implements OnInit {
   ngOnInit() {
     this.facultyFG=this.fb.group({
       fname:[this.faculty.fname,Validators.required],
-      fdept:[this.faculty.fdept,Validators.required]
+      fdept:[this.faculty.fdept,Validators.required],
+      fimage:['']
     });
     this.facultyList.push(this.facultyFG);
     if(this.faculty.fdept=='')
@@ -47,4 +48,21 @@ export class FacultyComponent implements OnInit {
         this.facultyFG.patchValue({fname:''});
     });
   }
+uploadImage(event){
+  var files = event.target.files;
+     var file = files[0];
+
+   if (files && file) {
+       var reader = new FileReader();
+
+       reader.onload =this._handleReaderLoaded.bind(this);
+
+       reader.readAsBinaryString(file);
+   }
+}
+_handleReaderLoaded(readerEvt) {
+     var binaryString = readerEvt.target.result;
+            this.facultyFG.patchValue({fimage:btoa(binaryString)});
+            console.log(this.facultyFG);
+    }
 }
