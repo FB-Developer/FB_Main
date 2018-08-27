@@ -22,7 +22,7 @@ export class FacultyComponent implements OnInit {
     this.facultyFG=this.fb.group({
       fname:[this.faculty.fname,Validators.required],
       fdept:[this.faculty.fdept,Validators.required],
-      fimage:['']
+      fimage:[this.faculty.fimage]
     });
     this.facultyList.push(this.facultyFG);
     if(this.faculty.fdept=='')
@@ -56,13 +56,11 @@ uploadImage(event){
        var reader = new FileReader();
 
        reader.onload =this._handleReaderLoaded.bind(this);
-
        reader.readAsBinaryString(file);
    }
 }
 _handleReaderLoaded(readerEvt) {
      var binaryString = readerEvt.target.result;
-            this.facultyFG.patchValue({fimage:btoa(binaryString)});
-            console.log(this.facultyFG);
+            this.facultyFG.patchValue({fimage:'data:image/jpeg;base64,'+btoa(binaryString)});
     }
 }

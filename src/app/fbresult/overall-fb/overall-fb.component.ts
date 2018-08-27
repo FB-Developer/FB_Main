@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FbresultService} from '../fbresult.service';
+import {FbresultServe} from '../fbresult.serve';
 import {Router} from '@angular/router';
 import {config} from '../../faculty/facultyconfig';
+import {saveAs} from  'file-saver/FileSaver';
 import swal from 'sweetalert2';
-
 @Component({
   selector: 'fb-overall-fb',
   templateUrl: './overall-fb.component.html',
@@ -19,7 +19,7 @@ dept:string='CE';
 changePwdDlg=false;loggedInUser;
 mesg;errmesg;
 flag:boolean=false;
-  constructor(private fbserv:FbresultService, private router:Router) { }
+  constructor(private fbserv:FbresultServe, private router:Router) { }
 
   resultDetail(fname)
   {
@@ -46,6 +46,7 @@ flag:boolean=false;
         }
       });
   }
+
   export2xlsx(){
     if(this.academicyear&&this.dept)
     {
@@ -127,4 +128,30 @@ closeChangePwdDlg(fg:any){
   fg.reset();
   this.changePwdDlg=false;
 }
+
+
+
+
+
+
+
+
+
+  downloadReport(){
+    this.fbserv.downloadReport(this.mesg.fileName)
+      .subscribe((dt)=>{
+        const blob=new Blob([dt],{type:"application/vnd.ms-excel"});
+        saveAs(blob,this.mesg.fileName);
+      },(error)=>{
+        {
+          swal({
+            title:"Error",
+            type:'error',
+            text:error
+          }).then((result)=>{
+            console.log('****');
+          });
+        }
+      });
+  }
 }

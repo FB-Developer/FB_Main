@@ -24,7 +24,8 @@ academicyear:string='2017-18';
 dept:string='CE';
   constructor(private gf:GetformsService, private router:Router) { }
 
-  ngOnInit() {
+  ngOnInit() {let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
+    this.dept=temp.userDetail.dept;
     this.loadFormField();
   }
   loadFormField(){

@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { FbresultService } from './fbresult.service';
+import { FbresultServe } from './fbresult.serve';
 
-describe('FbresultService', () => {
+describe('FbresultServe', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [FbresultService]

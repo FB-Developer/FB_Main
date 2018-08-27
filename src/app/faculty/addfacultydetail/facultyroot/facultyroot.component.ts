@@ -65,7 +65,10 @@ export class FacultyrootComponent implements OnInit {
       this.rootDT=new FBroot();
       this.rootDT.academicyear="2017-18";
       this.rootDT.degree="BE";
-      this.rootDT.dept="CE";
+
+
+      let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
+      this.rootDT.dept=temp.userDetail.dept;
       this.rootDT.sem="1";
       this.rootDT.class="1";
       this.rootDT.sectionList=new Array();
@@ -115,7 +118,7 @@ export class FacultyrootComponent implements OnInit {
         academicyear:[this.rootDT.academicyear,{value:this.rootDT.academicyear,disabled:this.isUpdate},Validators.required],
         degree:[this.rootDT.degree,{value:this.rootDT.degree,disabled:this.isUpdate},Validators.required],
         dept:[this.rootDT.dept,{value:this.rootDT.dept,disabled:this.isUpdate},Validators.required],
-        sem:[this.rootDT.sem,{value:this.rootDT.sem,disabled:this.isUpdate},Validators.required],        
+        sem:[this.rootDT.sem,{value:this.rootDT.sem,disabled:this.isUpdate},Validators.required],
         class:[this.rootDT.class,{value:this.rootDT.class,disabled:this.isUpdate},Validators.required]
       });
       this.onInfoChange();

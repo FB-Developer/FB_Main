@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FbresultService} from '../../fbresult/fbresult.service';
+import {FbresultServe} from '../../fbresult/fbresult.serve';
 import {serverconf} from 'assets/serverconf';
 import {Router} from '@angular/router';
  import { FileUploader } from 'ng2-file-upload';
  import swal from 'sweetalert2';
-
+ import {saveAs} from  'file-saver/FileSaver';
 @Component({
   selector: 'fb-facultydashboard',
   templateUrl: './facultydashboard.component.html',
@@ -20,8 +20,7 @@ export class FacultydashboardComponent implements OnInit {
   item;
   changePwdDlg=false;loggedInUserId;
   flag:boolean=false;
-
-  constructor(private fbserv:FbresultService,private router:Router) { }
+  constructor(private fbserv:FbresultServe,private router:Router) { }
   ngOnInit() {
     let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
     this.loggedInUserId=temp.userId;
@@ -31,7 +30,6 @@ export class FacultydashboardComponent implements OnInit {
 
     item.withCredentials = false;
   };
-
   this.uploader.onErrorItem = (item, response, status, headers) =>{
     let temp=JSON.parse(response);
     if(!temp.success)
@@ -39,7 +37,6 @@ export class FacultydashboardComponent implements OnInit {
     else
       this.dlgmesg='Succesfully Completed';
         };
-
   this.uploader.onSuccessItem = (item, response, status, headers) =>{
     let temp=JSON.parse(response);
     if(!temp.success)
@@ -52,7 +49,6 @@ export class FacultydashboardComponent implements OnInit {
   {
     this.router.navigate(['faculty/addfacultydetail']);
   }
-
   geStudentteForm()
   {
     this.router.navigate(['faculty/addfacultydetail']);
@@ -77,7 +73,6 @@ export class FacultydashboardComponent implements OnInit {
   {
     this.changePwdDlg=true;
   }
-
   changePassword(fg:any)
   {
     const value=fg.value;
@@ -115,7 +110,6 @@ export class FacultydashboardComponent implements OnInit {
         });
       });
   }
-
   closeChangePwdDlg(fg:any){
     fg.reset();
     this.changePwdDlg=false;

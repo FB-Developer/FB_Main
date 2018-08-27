@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {FbresultService} from '../fbresult.service';
+import {FbresultServe} from '../fbresult.serve';
 @Component({
-  selector: 'fb-detail-fb',
+   selector: 'fb-detail-fb',
   templateUrl: './detail-fb.component.html',
   styleUrls: ['./detail-fb.component.css']
 })
@@ -14,7 +14,7 @@ export class DetailFbComponent implements OnInit {
     fbDetail;
     errorMesg;
 
-    constructor(private route:ActivatedRoute,private fbserve:FbresultService) {}
+    constructor(private route:ActivatedRoute,private fbserve:FbresultServe) {}
     ngOnInit() {
 
       this.route.params.subscribe(params => {

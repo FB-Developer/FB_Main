@@ -12,7 +12,9 @@
 </div>
 
 <p *ngIf='mesg' class="text-success">File Saved to reports/{{mesg.fileName}}
-<strong>Download from <a href="reports/{{mesg.fileName}}">here</a></strong></p>
+  <button (click)="downloadReport()" class="btn btn-primary">Download From Here</button>
+<!--
+<strong>Download from <a href="reports/{{mesg.fileName}}">here</a></strong></p> -->
 <p *ngIf='errmesg' class="text-error">Error in exporting File<br/>{{errmesg|json}}</p>
 <table class="table">
   <thead style="text-align:center;font-weight:bold">
@@ -37,7 +39,7 @@
 
 
 
-    <!-- <button  [disabled]='overallFB?.length==0' (click)="export2xlsx()" type="button" style="width:100%" class="btn btn-primary">Export to XLSX</button> -->
+    <button  [disabled]='overallFB?.length==0' (click)="export2xlsx()" type="button" style="width:100%" class="btn btn-primary">Export to XLSX</button>
   </td>
   </tr>
 </table>

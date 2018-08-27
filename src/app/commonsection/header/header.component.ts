@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'fb-header',
   templateUrl: './header.component.html',
@@ -10,10 +9,9 @@ loggedInUser:string;
   constructor() { }
 
   ngOnInit() {
-    
+
     let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
     this.loggedInUser=temp.userName;
 
   }
-
 }

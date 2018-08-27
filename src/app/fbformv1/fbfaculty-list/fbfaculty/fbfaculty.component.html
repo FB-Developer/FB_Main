@@ -1,10 +1,9 @@
 <div [formGroup]='facultyFG' class="p-1" style="border-bottom:1px solid teal">
      <label class="form-label h5"><strong>Name:</strong> {{faculty.fname}}</label>
      <label class="form-label h5"><strong>Dept:</strong> {{faculty.fdept}}</label>
-
-     <div class="text-center">
-       <img [attr.src]="faculty.fimage" [attr.width]="140">
-     </div>
+     <div *ngIf='faculty.fimage' class="text-center">
+      <img [attr.src]="faculty.fimage" [attr.width]="140">
+    </div>
      <span *ngIf="!facultyFG.controls['rating'].valid && facultyFG.controls['rating'].touched" class="text-error p-1" style="">Required To Select an Option</span>
       <div style="text-align:center;border-bottom:1px solid;border-top:1px solid;padding-top:5px;padding-bottom:5px;">
         <label class="form-radio ">
@@ -24,12 +23,15 @@
           <i class="form-icon"></i> Fair (<=40)
         </label>
       </div>
-      <span *ngIf="rangeError" class="text-error p-1">{{rangeError}}</span>
-      <span *ngIf="!facultyFG.controls['score'].valid && facultyFG.controls['score'].touched" class="text-error p-1">Score Required</span>
+      <!--
+      <span *ngIf="rangeError" class="text-error p-1">{{rangeError}}</span> -->
+      <span *ngIf="facultyFG.controls['score'].errors?.min || facultyFG.controls['score'].errors?.max" class="text-error p-1">Range must be between {{minValue}} to {{maxValue}}</span>
+      <span *ngIf="facultyFG.controls['score'].errors?.required && facultyFG.controls['score'].touched" class="text-error p-1">Score Required</span>
       <div class="form-horizontal" style="padding-top:10px;padding-bottom:10px;">
         <div class="form-group">
         <label class="form-label h5 col-2">Score:</label>
         <input formControlName='score' class="form-input input-sm" (keypress)="restricRangeValue($event)" type="number" (ngModelChange)='onChangeScore($event)' style="box-shadow:2px 2px 20px lightgray">
+{{facultyFG.controls['score'].valid}}
         </div>
       </div>
 </div>

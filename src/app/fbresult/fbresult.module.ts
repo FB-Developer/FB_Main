@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { OverallFbComponent } from './overall-fb/overall-fb.component';
 import { DetailFbComponent } from './detail-fb/detail-fb.component';
-import {FbresultService} from './fbresult.service';
+import {FbresultServe} from './fbresult.serve';
 import {CommonsectionModule} from '../commonsection/commonsection.module';
 import { ChartsModule } from 'ng2-charts';
 const routes: Routes = [
@@ -35,6 +35,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
 ],
   declarations: [OverallFbComponent, DetailFbComponent],
-  providers:[FbresultService]
+  providers:[FbresultServe]
 })
-export class FbresultModule { }
+export class FbresultModule {}

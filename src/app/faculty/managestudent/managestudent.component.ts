@@ -16,9 +16,10 @@ export class ManagestudentComponent implements OnInit {
   semList=config.semList;
   classList= config.classList;
   academicyear='2017-18';
+
   dept='CE';
   degree='BE';
-  sem='7';
+  sem='1';
   class='1';
   studentList:any[];
   tempList:any[];
@@ -29,7 +30,16 @@ export class ManagestudentComponent implements OnInit {
 
   constructor(private manageser:ManagestudentService) { }
   ngOnInit() {
-    this.loadStudentList();
+
+
+
+
+
+
+
+    let temp  = JSON.parse(localStorage.getItem('loggedInUser'));
+      this.dept=temp.userDetail.dept;
+        this.loadStudentList();
   }
   setCompleted(id:string,completed:boolean)
   {

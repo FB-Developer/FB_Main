@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import {serverconf} from 'assets/serverconf';
-import {Http,Headers,RequestOptions,Response} from '@angular/http';
+import {Http,Headers,RequestOptions,Response,ResponseContentType} from '@angular/http';
 import{Observable}from'rxjs/Observable';
 import'rxjs/add/operator/map';
 import'rxjs/Rx'
 @Injectable()
-export class FbresultService {
+export class FbresultServe {
 
 url:string=serverconf.serverurl+'/fbresult';
   constructor(private http:Http) { }
   getOverallFB(ayear:string,dept:string){
-
 
     let tempurl1=this.url+'/overall?academicyear='+ayear+'&dept='+dept;
     console.log('****',tempurl1);
@@ -45,6 +44,12 @@ url:string=serverconf.serverurl+'/fbresult';
     },
     options)
       .map((response:Response)=>response.json());
-
   }
-}
+  downloadReport(fileName:string){
+
+  return this.http.get(this.url+"/downloadreport?filename="+fileName,{ responseType: ResponseContentType.Blob})
+    .map((response:Response)=>{
+      return (<any>response)._body;
+    })
+  }
+};

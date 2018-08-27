@@ -7,9 +7,12 @@ export const config={
 ],
   degreeList:[
     'BE',
-    'ME'
+    'ME',
+    'MCA',
+    'B.Arch.'
   ],
   departmentList:[
+    "Archi.",
     "CE",
     "IT",
     "EC",
@@ -18,10 +21,11 @@ export const config={
     "MECHANICAL",
     "CIVIL",
     "ELECTRICAL",
-    "AERO"
+    "AERO",
+    'MCA'
   ],
   semList:[
-    1,2,3,4,5,6,7,8
+    1,2,3,4,5,6,7,8,9,10
   ],
   classList:[
     1,2
@@ -30,6 +34,8 @@ export const config={
     "Theory",
     "Theory(Elective)",
     "Practical",
-    "Technician"
+    "Technician",
+
+      "Theory+Practical"
   ]
 }

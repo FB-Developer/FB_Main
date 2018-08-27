@@ -19,8 +19,10 @@
       <input ng2-auto-complete class="form-input input-sm" formControlName='fname'
         [source]='autoFacultyList'>
       </div>
-      <div class="container">
+      <div *ngIf='facultyFG.parent.parent.parent.parent.parent.parent.value.sem==1 || facultyFG.parent.parent.parent.parent.parent.parent.value.sem==2' class="container">
 
+          <img *ngIf='facultyFG.value.fimage' [attr.src]="facultyFG.value.fimage" [attr.width]="140">
+          <br>
           <input type="file" class="btn btn-sm" (change)="uploadImage($event)">
       </div>
       </div>
