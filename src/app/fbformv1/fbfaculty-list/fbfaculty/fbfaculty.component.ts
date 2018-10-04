@@ -29,23 +29,23 @@ export class FbfacultyComponent implements OnInit {
     let ratingValue:string=this.facultyFG.controls['rating'].value;
     if(ratingValue.startsWith('Excellent'))
     {
-        this.minValue=81;
+        this.minValue=85;
         this.maxValue=100;
     }
     else if(ratingValue.startsWith('Very Good'))
     {
-        this.minValue=61;
-        this.maxValue=80;
+        this.minValue=70;
+        this.maxValue=85;
     }
     else if(ratingValue.startsWith('Good'))
     {
-        this.minValue=41;
-        this.maxValue=60;
+        this.minValue=50;
+        this.maxValue=70;
     }
     else if(ratingValue.startsWith('Fair'))
     {
         this.minValue=0;
-        this.maxValue=40;
+        this.maxValue=49;
     }
     this.facultyFG.get('score').setValidators([Validators.required, Validators.min(this.minValue), Validators.max(this.maxValue)]);
     // if(ratingValue.startsWith('Excellent')&&(temp<81||temp>100))
